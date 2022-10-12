@@ -7,16 +7,15 @@ import StorefrontIcon from "@mui/icons-material/Storefront";
 import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import FlagIcon from "@mui/icons-material/Flag";
-import { IconButton } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import ForumIcon from '@mui/icons-material/Forum';
-import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
-import Avatar from '@mui/material/Avatar';
-
-
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import CircleNotificationsIcon from "@mui/icons-material/CircleNotifications";
+import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
+import Avatar from "@mui/material/Avatar";
+import { useStateValue } from "./StateProvider";
 
 const Header = () => {
+  const [{ user }, dispatch] = useStateValue();
   return (
     <>
       <div className="header">
@@ -45,20 +44,19 @@ const Header = () => {
           </div>
         </div>
         <div className="header__right">
-            <div className="header__info">
-                <Avatar />
-                <h4>George H</h4>
-            </div>
-            <IconButton>
-              <AddIcon />
-            </IconButton>
-            <IconButton>
-              <CircleNotificationsIcon />
-            </IconButton>
-            <IconButton>
-            <ExpandCircleDownIcon/>
-            </IconButton>
-
+          <div className="header__info">
+            <Avatar src={user.photoUrl} alt="" />
+            <h4>{user.displayName}</h4>
+          </div>
+          <IconButton>
+            <AddIcon />
+          </IconButton>
+          <IconButton>
+            <CircleNotificationsIcon />
+          </IconButton>
+          <IconButton>
+            <ExpandCircleDownIcon />
+          </IconButton>
         </div>
       </div>
     </>
